@@ -24,7 +24,7 @@ public class UsrArticleController {
 		
 		this.articleService.writeArticle(title, content);
 		
-		return "글 작성 완료!!!!";
+		return "글 작성 완료";
 	}
 	
 	@GetMapping("/usr/article/list")
