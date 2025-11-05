@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.dto.Article;
 import com.example.demo.service.ArticleService;
+import com.example.demo.util.Util;
 
 @Controller
 public class UsrArticleController {
@@ -33,7 +34,7 @@ public class UsrArticleController {
 		
 		int id = this.articleService.getLastInsertId();
 		
-		return String.format("<script>alert('%d번 게시물의 작성이 완료되었습니다'); location.replace('detail?id=%d');</script>", id, id);
+		return Util.jsReplace(String.format("%d번 게시물이 작성되었습니다", id), String.format("detail?id=%d", id));
 	}
 	
 	@GetMapping("/usr/article/list")
@@ -72,7 +73,7 @@ public class UsrArticleController {
 
 		this.articleService.modifyArticle(id, title, content);
 		
-		return String.format("<script>alert('%d번 게시물의 수정이 완료되었습니다'); location.replace('detail?id=%d');</script>", id, id);
+		return Util.jsReplace(String.format("%d번 게시물의 수정이 완료되었습니다", id), String.format("detail?id=%d", id));
 	}
 	
 	@GetMapping("/usr/article/delete")
@@ -81,7 +82,7 @@ public class UsrArticleController {
 		
 		this.articleService.deleteArticle(id);
 		
-		return String.format("<script>alert('%d번 게시물의 삭제가 완료되었습니다'); location.replace('list');</script>", id);
+		return Util.jsReplace(String.format("%d번 게시물이 삭제되었습니다", id), "list");
 	}
 	
 }
