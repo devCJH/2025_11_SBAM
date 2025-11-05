@@ -5,7 +5,12 @@
 <c:set var="pageTitle" value="메인"/>
 
 <%@ include file="/view/usr/common/header.jsp" %>
-
-	<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat eaque soluta asperiores magni ab inventore non atque quas consequatur libero facere nihil eius earum consectetur dolorem quod recusandae impedit rem.</div>
+	
+	<section class="mt-8">
+		<div class="container mx-auto">
+			<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat eaque soluta asperiores magni ab inventore non atque quas consequatur libero facere nihil eius earum consectetur dolorem quod recusandae impedit rem.</div>
+			<div>안녕~~~</div>
+		</div>
+	</section>
 
 <%@ include file="/view/usr/common/footer.jsp" %>

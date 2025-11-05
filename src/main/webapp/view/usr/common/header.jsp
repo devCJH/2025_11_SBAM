@@ -14,7 +14,11 @@
 <title>${pageTitle }</title>
 </head>
 <body>
-	<div>
-		<a href="/">홈</a>
-		<a href="/usr/article/list">리스트</a>
+	<div class="container h-20 flex mx-auto text-3xl">
+		<div><a class="flex h-full px-3 items-center" href="/">로고</a></div>
+		<div class="grow"></div>
+		<ul class="flex">
+			<li><a class="flex h-full px-3 items-center hover:underline underline-offset-8" href="/">HOME</a></li>
+			<li><a class="flex h-full px-3 items-center hover:underline underline-offset-8" href="/usr/article/list">LIST</a></li>
+		</ul>
 	</div>
