@@ -8,7 +8,7 @@
 
 	<section class="mt-8">
 		<div class="container mx-auto">	
-			<form action="/usr/article/doWrite" method="post">
+			<form action="/usr/article/doWrite" method="post" onsubmit="return submitFormChk(this);">
 				<div class="table-box">
 					<table class="w-full">
 						<tr>

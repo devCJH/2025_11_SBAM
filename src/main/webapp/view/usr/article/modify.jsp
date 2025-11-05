@@ -8,7 +8,7 @@
 
 	<section class="mt-8">
 		<div class="container mx-auto">
-			<form action="/usr/article/doModify" method="post">
+			<form action="/usr/article/doModify" method="post" onsubmit="return submitFormChk(this);">
 				<input name="id" type="hidden" value="${article.getId() }"/>
 				<div class="table-box">
 					<table class="w-full">
