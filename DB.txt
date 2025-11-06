@@ -9,3 +9,54 @@ CREATE TABLE article(
     , title VARCHAR(100) NOT NULL
     , content TEXT NOT NULL
 );
+
+CREATE TABLE `member`(
+    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT
+    , regDate DATETIME NOT NULL
+    , updateDate DATETIME NOT NULL
+    , loginId VARCHAR(50) NOT NULL
+    , loginPw VARCHAR(100) NOT NULL
+    , `name` VARCHAR(20) NOT NULL
+);
+
+INSERT INTO article
+    SET regDate = NOW()
+        , updateDate = NOW()
+        , title = '제목1'
+        , content = '내용1';
+        
+INSERT INTO article
+    SET regDate = NOW()
+        , updateDate = NOW()
+        , title = '제목2'
+        , content = '내용2';
+        
+INSERT INTO article
+    SET regDate = NOW()
+        , updateDate = NOW()
+        , title = '제목3'
+        , content = '내용3';
+
+INSERT INTO `member`
+    SET regDate = NOW()
+        , updateDate = NOW()
+        , loginId = 'test1'
+        , loginPw = 'test1'
+        , `name` = 'test1';
+        
+INSERT INTO `member`
+    SET regDate = NOW()
+        , updateDate = NOW()
+        , loginId = 'test2'
+        , loginPw = 'test2'
+        , `name` = 'test2';
+        
+INSERT INTO `member`
+    SET regDate = NOW()
+        , updateDate = NOW()
+        , loginId = 'test3'
+        , loginPw = 'test3'
+        , `name` = 'test3';
+
+SELECT * FROM article;
+SELECT * FROM `member`;

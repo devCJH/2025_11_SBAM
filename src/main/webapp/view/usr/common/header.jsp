@@ -21,5 +21,6 @@
 		<ul class="flex">
 			<li><a class="flex h-full px-3 items-center hover:underline underline-offset-8" href="/">HOME</a></li>
 			<li><a class="flex h-full px-3 items-center hover:underline underline-offset-8" href="/usr/article/list">LIST</a></li>
+			<li><a class="flex h-full px-3 items-center hover:underline underline-offset-8" href="/usr/member/join">JOIN</a></li>
 		</ul>
 	</div>

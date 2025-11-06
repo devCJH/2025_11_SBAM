@@ -5,7 +5,11 @@
 <c:set var="pageTitle" value="상세"/>
 
 <%@ include file="/view/usr/common/header.jsp" %>
-
+	
+	<script>
+		console.log(${article.getId() });
+	</script>
+	
 	<section class="mt-8">
 		<div class="container mx-auto">
 			<div class="table-box">

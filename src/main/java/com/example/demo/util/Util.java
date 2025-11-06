@@ -19,7 +19,13 @@ public class Util {
 						alert(msg);
 					}
 					
-					location.replace('%s');
+					const uri = '%s'.trim();
+					
+					if (uri == 'hb') {
+						history.back();
+					}
+					
+					location.replace(uri);
 				</script>
 				""", msg, uri);
 	}
