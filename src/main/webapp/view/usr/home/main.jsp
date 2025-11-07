@@ -10,6 +10,7 @@
 		<div class="container mx-auto">
 			<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat eaque soluta asperiores magni ab inventore non atque quas consequatur libero facere nihil eius earum consectetur dolorem quod recusandae impedit rem.</div>
 			<div id="msg">안녕~~~</div>
+			<div>${sessionScope }</div>
 		</div>
 	</section>
 
