@@ -23,13 +23,38 @@
 				return false;
 			}
 			
-			return true;
+			let validLoginInfoMsg = $('#validLoginInfoMsg');
+			
+			$.ajax({
+				url : '/usr/member/validLoginInfo',
+				type : 'post',
+				data : {
+					loginId : form.loginId.value,
+					loginPw : form.loginPw.value
+				},
+				dataType : 'json',
+				success : function(data) {
+					if (data.fail) {
+						validLoginInfoMsg.addClass('text-red-500');
+						validLoginInfoMsg.html(`\${data.rsMsg}`);
+					} else {
+						validLoginInfoMsg.removeClass('text-red-500');
+						validLoginInfoMsg.empty();
+						$(form).append(`<input type='hidden' name='loginedMemberId' value='\${data.rsData}' />`);
+						form.submit();
+					}
+				},
+				error : function(xhr, status, error) {
+					console.log(error);
+				}
+			})
 		}
+		
 	</script>
 	
 	<section class="mt-8">
 		<div class="container mx-auto">	
-			<form action="/usr/member/doLogin" method="post" onsubmit="return loginFormSubmit(this);">
+			<form action="/usr/member/doLogin" method="post" onsubmit="loginFormSubmit(this); return false;">
 				<div class="table-box">
 					<table class="w-full">
 						<tr>
@@ -41,7 +66,10 @@
 							<td><input class="border w-full" name="loginPw" type="text"/></td>
 						</tr>
 						<tr>
-							<td colspan="2"><button class="submitBtn w-32">로그인</button></td>
+							<td colspan="2">
+								<div id="validLoginInfoMsg" class="mb-2 text-sm h-5"></div>
+								<button class="submitBtn w-32">로그인</button>
+							</td>
 						</tr>
 					</table>
 				</div>

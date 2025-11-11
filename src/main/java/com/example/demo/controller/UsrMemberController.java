@@ -52,21 +52,28 @@ public class UsrMemberController {
 		return "usr/member/login";
 	}
 	
-	@PostMapping("/usr/member/doLogin")
+	@PostMapping("/usr/member/validLoginInfo")
 	@ResponseBody
-	public String doLogin(HttpSession session, String loginId, String loginPw) {
+	public ResultData<Integer> validLoginInfo(String loginId, String loginPw) {
 		
 		Member member = this.memberService.getMemberByLoginId(loginId);
 		
 		if (member == null) {
-			return Util.jsReplace(String.format("[ %s ]은(는) 존재하지 않는 아이디입니다", loginId), "login");
+			return new ResultData<>("F-1", String.format("[ %s ]은(는) 존재하지 않는 아이디입니다", loginId));
 		}
 		
 		if (!member.getLoginPw().equals(loginPw)) {
-			return Util.jsReplace("비밀번호가 일치하지 않습니다", "login");
+			return new ResultData<>("F-2", "비밀번호가 일치하지 않습니다");
 		}
 		
-		session.setAttribute("loginedMemberId", member.getId());
+		return new ResultData<>("S-1", "로그인 가능", member.getId());
+	}
+	
+	@PostMapping("/usr/member/doLogin")
+	@ResponseBody
+	public String doLogin(HttpSession session, int loginedMemberId, String loginId) {
+		
+		session.setAttribute("loginedMemberId", loginedMemberId);
 		
 		return Util.jsReplace(String.format("[ %s ] 님 환영합니다~!", loginId), "/");
 	}
