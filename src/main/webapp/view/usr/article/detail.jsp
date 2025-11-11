@@ -9,7 +9,7 @@
 	<section class="mt-8">
 		<div class="container mx-auto">
 			<div class="table-box">
-				<table class="w-full">
+				<table class="table">
 					<tr>
 						<th>번호</th>
 						<td>${article.getId() }</td>
@@ -36,12 +36,12 @@
 					</tr>
 				</table>
 			</div>
-			<div class="btns mt-3 text-sm flex justify-between">
-				<div><button onclick="history.back();">뒤로가기</button></div>
+			<div class="bg-white p-6 flex justify-between">
+				<div><button class="btn btn-neutral btn-outline btn-xs" onclick="history.back();">뒤로가기</button></div>
 				<c:if test="${sessionScope.loginedMemberId == article.getMemberId() }">
 					<div class="flex">
-						<div><a class="block mx-2" href="/usr/article/modify?id=${article.getId() }">수정</a></div>
-						<div><a class="block" href="/usr/article/delete?id=${article.getId() }" onclick="if(confirm('정말 삭제하시겠습니까?') == false) return false;">삭제</a></div>
+						<div class="mr-2"><a class="btn btn-neutral btn-outline btn-xs" href="/usr/article/modify?id=${article.getId() }">수정</a></div>
+						<div><a class="btn btn-neutral btn-outline btn-xs" href="/usr/article/delete?id=${article.getId() }" onclick="if(confirm('정말 삭제하시겠습니까?') == false) return false;">삭제</a></div>
 					</div>
 				</c:if>
 			</div>

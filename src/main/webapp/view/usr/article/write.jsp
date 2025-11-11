@@ -10,23 +10,23 @@
 		<div class="container mx-auto">	
 			<form action="/usr/article/doWrite" method="post" onsubmit="return submitFormChk(this);">
 				<div class="table-box">
-					<table class="w-full">
+					<table class="table">
 						<tr>
 							<th>제목</th>
-							<td><input class="border w-full" name="title" type="text"/></td>
+							<td><input class="input input-neutral" name="title" type="text"/></td>
 						</tr>
 						<tr>
 							<th>내용</th>
-							<td><textarea class="border w-full" name="content"></textarea></td>
+							<td><textarea class="textarea textarea-neutral" name="content"></textarea></td>
 						</tr>
 						<tr>
-							<td colspan="2"><button class="submitBtn w-32">작성</button></td>
+							<td colspan="2"><button class="btn btn-neutral btn-outline btn-sm btn-wide">작성</button></td>
 						</tr>
 					</table>
 				</div>
 			</form>
-			<div class="btns mt-3 text-sm">
-				<div><button onclick="history.back();">뒤로가기</button></div>
+			<div class="bg-white p-6">
+				<div><button class="btn btn-neutral btn-outline btn-xs" onclick="history.back();">뒤로가기</button></div>
 			</div>
 		</div>
 	</section>

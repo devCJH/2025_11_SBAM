@@ -95,34 +95,34 @@
 		<div class="container mx-auto">	
 			<form action="/usr/member/doJoin" method="post" onsubmit="return joinFormSubmit(this);">
 				<div class="table-box">
-					<table class="w-full">
+					<table class="table">
 						<tr>
 							<th>아이디</th>
 							<td>
-								<input class="border w-full" name="loginId" type="text" onblur="loginIdDupChk(this);"/>
-								<div id="chkMsg" class="mt-2 text-sm h-5 text-left"></div>
+								<input class="input input-neutral" name="loginId" type="text" onblur="loginIdDupChk(this);"/>
+								<div id="chkMsg" class="mt-2 text-sm h-5 text-center mx-auto w-72"></div>
 							</td>
 						</tr>
 						<tr>
 							<th>비밀번호</th>
-							<td><input class="border w-full" name="loginPw" type="text"/></td>
+							<td><input class="input input-neutral" name="loginPw" type="text"/></td>
 						</tr>
 						<tr>
 							<th>비밀번호 확인</th>
-							<td><input class="border w-full" name="loginPwChk" type="text"/></td>
+							<td><input class="input input-neutral" name="loginPwChk" type="text"/></td>
 						</tr>
 						<tr>
 							<th>이름</th>
-							<td><input class="border w-full" name="name" type="text"/></td>
+							<td><input class="input input-neutral" name="name" type="text"/></td>
 						</tr>
 						<tr>
-							<td colspan="2"><button class="submitBtn w-32">가입</button></td>
+							<td colspan="2"><button class="btn btn-neutral btn-outline btn-sm btn-wide">가입</button></td>
 						</tr>
 					</table>
 				</div>
 			</form>
-			<div class="btns mt-3 text-sm">
-				<div><button onclick="history.back();">뒤로가기</button></div>
+			<div class="bg-white p-6">
+				<div><button class="btn btn-neutral btn-outline btn-xs" onclick="history.back();">뒤로가기</button></div>
 			</div>
 		</div>
 	</section>

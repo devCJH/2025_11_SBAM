@@ -32,7 +32,7 @@ public class UsrMemberController {
 
 		this.memberService.joinMember(loginId, loginPw, name);
 		
-		return Util.jsReplace(String.format("%s님의 가입이 완료되었습니다", loginId), "/");
+		return Util.jsReplace(String.format("%s님의 가입이 완료되었습니다", loginId), "login");
 	}
 	
 	@GetMapping("/usr/member/loginIdDupChk")

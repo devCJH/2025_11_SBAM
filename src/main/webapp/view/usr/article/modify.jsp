@@ -11,7 +11,7 @@
 			<form action="/usr/article/doModify" method="post" onsubmit="return submitFormChk(this);">
 				<input name="id" type="hidden" value="${article.getId() }"/>
 				<div class="table-box">
-					<table class="w-full">
+					<table class="table">
 						<tr>
 							<th>번호</th>
 							<td>${article.getId() }</td>
@@ -26,21 +26,21 @@
 						</tr>
 						<tr>
 							<th>제목</th>
-							<td><input class="border w-full" name="title" type="text" value="${article.getTitle() }" /></td>
+							<td><input class="input input-neutral" name="title" type="text" value="${article.getTitle() }" /></td>
 						</tr>
 						<tr>
 							<th>내용</th>
-							<td><textarea class="border w-full" name="content">${article.getContent() }</textarea></td>
+							<td><textarea class="textarea textarea-neutral" name="content">${article.getContent() }</textarea></td>
 						</tr>
 						<tr>
-							<td colspan="2"><button class="submitBtn w-32">수정</button></td>
+							<td colspan="2"><button class="btn btn-neutral btn-outline btn-sm btn-wide">수정</button></td>
 						</tr>
 					</table>
 				</div>
 			</form>
-			<div class="btns mt-3 text-sm flex justify-between">
-				<div><button onclick="history.back();">뒤로가기</button></div>
-				<div><a class="block" href="/usr/article/delete?id=${article.getId() }" onclick="if(confirm('정말 삭제하시겠습니까?') == false) return false;">삭제</a></div>
+			<div class="bg-white p-6 flex justify-between">
+				<div><button class="btn btn-neutral btn-outline btn-xs" onclick="history.back();">뒤로가기</button></div>
+				<div><a class="btn btn-neutral btn-outline btn-xs" href="/usr/article/delete?id=${article.getId() }" onclick="if(confirm('정말 삭제하시겠습니까?') == false) return false;">삭제</a></div>
 			</div>
 		</div>
 	</section>

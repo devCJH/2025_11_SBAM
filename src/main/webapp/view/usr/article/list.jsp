@@ -9,7 +9,7 @@
 	<section class="mt-8">
 		<div class="container mx-auto">
 			<div class="table-box">
-				<table class="w-full">
+				<table class="table">
 					<tr>
 						<th>번호</th>
 						<th>제목</th>
@@ -17,7 +17,7 @@
 						<th>작성일</th>
 					</tr>
 					<c:forEach items="${articles }" var="article">
-						<tr>
+						<tr class="hover:bg-base-300">
 							<td>${article.getId() }</td>
 							<td class="hover:underline underline-offset-4"><a href="/usr/article/detail?id=${article.getId() }">${article.getTitle() }</a></td>
 							<td>${article.getWriterName() }</td>
@@ -26,9 +26,9 @@
 					</c:forEach>
 				</table>
 			</div>
-			<div class="btns mt-3 text-sm flex justify-end">
+			<div class="bg-white p-6 flex justify-end">
 				<c:if test="${sessionScope.loginedMemberId != null }">
-					<div><a class="block" href="/usr/article/write">글쓰기</a></div>
+					<div><a class="btn btn-neutral btn-outline btn-xs" href="/usr/article/write">글쓰기</a></div>
 				</c:if>
 			</div>
 		</div>

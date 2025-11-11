@@ -55,27 +55,41 @@
 	<section class="mt-8">
 		<div class="container mx-auto">	
 			<form action="/usr/member/doLogin" method="post" onsubmit="loginFormSubmit(this); return false;">
-				<div class="table-box">
-					<table class="w-full">
-						<tr>
-							<th>아이디</th>
-							<td><input class="border w-full" name="loginId" type="text"/></td>
-						</tr>
-						<tr>
-							<th>비밀번호</th>
-							<td><input class="border w-full" name="loginPw" type="text"/></td>
-						</tr>
-						<tr>
-							<td colspan="2">
-								<div id="validLoginInfoMsg" class="mb-2 text-sm h-5"></div>
-								<button class="submitBtn w-32">로그인</button>
-							</td>
-						</tr>
-					</table>
+				<div class="flex justify-center">
+					<fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+					  <legend class="fieldset-legend">로그인</legend>
+					
+					  <label class="label">아이디</label>
+					  <input name="loginId" type="text" class="input"/>
+					
+					  <label class="label">비밀번호</label>
+					  <input name="loginPw" type="password" class="input"/>
+					  
+					  <div id="validLoginInfoMsg" class="mt-2 text-sm h-5 text-center mx-auto w-72"></div>
+					  <button class="btn btn-neutral mt-2">로그인</button>
+					</fieldset>
 				</div>
+<!-- 				<div class="table-box"> -->
+<!-- 					<table class="table"> -->
+<!-- 						<tr> -->
+<!-- 							<th>아이디</th> -->
+<!-- 							<td><input class="border w-full" name="loginId" type="text"/></td> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<th>비밀번호</th> -->
+<!-- 							<td><input class="border w-full" name="loginPw" type="text"/></td> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<td colspan="2"> -->
+<!-- 								<div id="validLoginInfoMsg" class="mb-2 text-sm h-5 text-center mx-auto w-72"></div> -->
+<!-- 								<button class="btn btn-neutral btn-outline btn-sm btn-wide">로그인</button> -->
+<!-- 							</td> -->
+<!-- 						</tr> -->
+<!-- 					</table> -->
+<!-- 				</div> -->
 			</form>
-			<div class="btns mt-3 text-sm">
-				<div><button onclick="history.back();">뒤로가기</button></div>
+			<div class="bg-white mt-4 w-xs mx-auto">
+				<div><button class="btn btn-neutral btn-outline btn-xs" onclick="history.back();">뒤로가기</button></div>
 			</div>
 		</div>
 	</section>
