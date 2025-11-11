@@ -35,11 +35,7 @@ public interface ArticleDao {
 	public List<Article> showList();
 
 	@Select("""
-			SELECT a.id
-					, a.regDate
-					, a.updateDate
-					, a.title
-					, a.content
+			SELECT a.*
 					, m.loginId AS `writerName`
 				FROM article AS a
 			    INNER JOIN `member` AS m

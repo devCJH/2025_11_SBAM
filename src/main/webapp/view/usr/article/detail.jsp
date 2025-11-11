@@ -38,10 +38,12 @@
 			</div>
 			<div class="btns mt-3 text-sm flex justify-between">
 				<div><button onclick="history.back();">뒤로가기</button></div>
-				<div class="flex">
-					<div><a class="block mx-2" href="/usr/article/modify?id=${article.getId() }">수정</a></div>
-					<div><a class="block" href="/usr/article/delete?id=${article.getId() }" onclick="if(confirm('정말 삭제하시겠습니까?') == false) return false;">삭제</a></div>
-				</div>
+				<c:if test="${sessionScope.loginedMemberId == article.getMemberId() }">
+					<div class="flex">
+						<div><a class="block mx-2" href="/usr/article/modify?id=${article.getId() }">수정</a></div>
+						<div><a class="block" href="/usr/article/delete?id=${article.getId() }" onclick="if(confirm('정말 삭제하시겠습니까?') == false) return false;">삭제</a></div>
+					</div>
+				</c:if>
 			</div>
 		</div>
 	</section>
