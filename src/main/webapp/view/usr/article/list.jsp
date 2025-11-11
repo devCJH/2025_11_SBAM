@@ -13,19 +13,23 @@
 					<tr>
 						<th>번호</th>
 						<th>제목</th>
+						<th>작성자</th>
 						<th>작성일</th>
 					</tr>
 					<c:forEach items="${articles }" var="article">
 						<tr>
 							<td>${article.getId() }</td>
 							<td class="hover:underline underline-offset-4"><a href="/usr/article/detail?id=${article.getId() }">${article.getTitle() }</a></td>
+							<td>${article.getWriterName() }</td>
 							<td>${article.getRegDate() }</td>
 						</tr>
 					</c:forEach>
 				</table>
 			</div>
 			<div class="btns mt-3 text-sm flex justify-end">
-				<div><a class="block" href="/usr/article/write">글쓰기</a></div>
+				<c:if test="${sessionScope.loginedMemberId != null }">
+					<div><a class="block" href="/usr/article/write">글쓰기</a></div>
+				</c:if>
 			</div>
 		</div>
 	</section>

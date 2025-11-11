@@ -6,10 +6,6 @@
 
 <%@ include file="/view/usr/common/header.jsp" %>
 	
-	<script>
-		console.log(${article.getId() });
-	</script>
-	
 	<section class="mt-8">
 		<div class="container mx-auto">
 			<div class="table-box">
@@ -25,6 +21,10 @@
 					<tr>
 						<th>수정일</th>
 						<td>${article.getUpdateDate() }</td>
+					</tr>
+					<tr>
+						<th>작성자</th>
+						<td>${article.getWriterName() }</td>
 					</tr>
 					<tr>
 						<th>제목</th>

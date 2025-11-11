@@ -12,6 +12,8 @@ import com.example.demo.dto.Article;
 import com.example.demo.service.ArticleService;
 import com.example.demo.util.Util;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class UsrArticleController {
 	
@@ -28,9 +30,9 @@ public class UsrArticleController {
 	
 	@PostMapping("/usr/article/doWrite")
 	@ResponseBody
-	public String doWrite(String title, String content) {
+	public String doWrite(HttpSession session, String title, String content) {
 		
-		this.articleService.writeArticle(title, content);
+		this.articleService.writeArticle(title, content, (int) session.getAttribute("loginedMemberId"));
 		
 		int id = this.articleService.getLastInsertId();
 		
