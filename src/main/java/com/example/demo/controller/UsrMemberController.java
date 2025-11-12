@@ -6,19 +6,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.dto.Member;
+import com.example.demo.dto.Req;
 import com.example.demo.dto.ResultData;
 import com.example.demo.service.MemberService;
 import com.example.demo.util.Util;
-
-import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class UsrMemberController {
 	
 	private MemberService memberService;
+	private Req req;
 	
-	public UsrMemberController(MemberService memberService) {
+	public UsrMemberController(MemberService memberService, Req req) {
 		this.memberService = memberService;
+		this.req = req;
 	}
 	
 	@GetMapping("/usr/member/join")
@@ -71,18 +72,18 @@ public class UsrMemberController {
 	
 	@PostMapping("/usr/member/doLogin")
 	@ResponseBody
-	public String doLogin(HttpSession session, int loginedMemberId, String loginId) {
+	public String doLogin(int loginedMemberId, String loginId) {
 		
-		session.setAttribute("loginedMemberId", loginedMemberId);
+		this.req.login(loginedMemberId);
 		
 		return Util.jsReplace(String.format("[ %s ] 님 환영합니다~!", loginId), "/");
 	}
 	
 	@GetMapping("/usr/member/logout")
 	@ResponseBody
-	public String logout(HttpSession session) {
+	public String logout() {
 		
-		session.invalidate();
+		this.req.logout();
 		
 		return Util.jsReplace("정상적으로 로그아웃 되었습니다", "/");
 	}

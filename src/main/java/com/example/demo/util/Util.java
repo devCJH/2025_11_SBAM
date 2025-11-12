@@ -16,7 +16,9 @@ public class Util {
 					const msg = '%s'.trim();
 					
 					if (msg.length > 0) {
-						alert(msg);
+						requestAnimationFrame(() => {
+							alert(msg);
+						})
 					}
 					
 					const uri = '%s'.trim();
@@ -25,7 +27,10 @@ public class Util {
 						history.back();
 					}
 					
-					location.replace(uri);
+					setTimeout(() => {
+						location.replace(uri);
+					}, 100);
+					
 				</script>
 				""", msg, uri);
 	}

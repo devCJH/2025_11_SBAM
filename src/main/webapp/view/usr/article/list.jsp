@@ -27,7 +27,7 @@
 				</table>
 			</div>
 			<div class="bg-white p-6 flex justify-end">
-				<c:if test="${sessionScope.loginedMemberId != null }">
+				<c:if test="${req.getLoginedMemberId() != -1 }">
 					<div><a class="btn btn-neutral btn-outline btn-xs" href="/usr/article/write">글쓰기</a></div>
 				</c:if>
 			</div>
