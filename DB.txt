@@ -9,6 +9,7 @@ CREATE TABLE article(
     , memberId INT UNSIGNED NOT NULL
     , title VARCHAR(100) NOT NULL
     , content TEXT NOT NULL
+    , boardId INT UNSIGNED NOT NULL
 );
 
 CREATE TABLE `member`(
@@ -20,26 +21,82 @@ CREATE TABLE `member`(
     , `name` VARCHAR(20) NOT NULL
 );
 
+CREATE TABLE board(
+    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT
+    , boardName VARCHAR(20) NOT NULL
+);
+
 INSERT INTO article
     SET regDate = NOW()
         , updateDate = NOW()
         , memberId = 2
         , title = '제목1'
-        , content = '내용1';
+        , content = '내용1'
+        , boardId = 2;
         
 INSERT INTO article
     SET regDate = NOW()
         , updateDate = NOW()
         , memberId = 1
         , title = '제목2'
-        , content = '내용2';
+        , content = '내용2'
+        , boardId = 3;
         
 INSERT INTO article
     SET regDate = NOW()
         , updateDate = NOW()
         , memberId = 2
         , title = '제목3'
-        , content = '내용3';
+        , content = '내용3'
+        , boardId = 3;
+        
+INSERT INTO article
+    SET regDate = NOW()
+        , updateDate = NOW()
+        , memberId = 2
+        , title = '제목4'
+        , content = '내용4'
+        , boardId = 3;
+        
+INSERT INTO article
+    SET regDate = NOW()
+        , updateDate = NOW()
+        , memberId = 3
+        , title = '제목5'
+        , content = '내용5'
+        , boardId = 1;
+        
+INSERT INTO article
+    SET regDate = NOW()
+        , updateDate = NOW()
+        , memberId = 3
+        , title = '제목6'
+        , content = '내용6'
+        , boardId = 1;
+        
+INSERT INTO article
+    SET regDate = NOW()
+        , updateDate = NOW()
+        , memberId = 2
+        , title = '제목7'
+        , content = '내용7'
+        , boardId = 2;
+        
+INSERT INTO article
+    SET regDate = NOW()
+        , updateDate = NOW()
+        , memberId = 2
+        , title = '제목8'
+        , content = '내용8'
+        , boardId = 1;
+        
+INSERT INTO article
+    SET regDate = NOW()
+        , updateDate = NOW()
+        , memberId = 3
+        , title = '제목9'
+        , content = '내용9'
+        , boardId = 2;
 
 INSERT INTO `member`
     SET regDate = NOW()
@@ -62,5 +119,13 @@ INSERT INTO `member`
         , loginPw = 'test3'
         , `name` = 'test3';
 
+INSERT INTO board
+    SET boardName = '공지사항';
+INSERT INTO board
+    SET boardName = '자유';
+INSERT INTO board
+    SET boardName = '질문과답변';
+
 SELECT * FROM article;
 SELECT * FROM `member`;
+SELECT * FROM board;

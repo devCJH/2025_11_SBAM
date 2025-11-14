@@ -12,19 +12,24 @@ html * {
 }
 
 .table-box th, .table-box td {
-/* 	border: 1px solid black; */
 	padding: 10px;
 	text-align: center;
 }
 
-/* .btns a, .btns button, .submitBtn { */
-/* 	padding: 5px; */
-/* 	border: 2px solid black; */
-/* 	border-radius: 8px; */
-/* 	cursor: pointer; */
-/* } */
+.header-menu > li {
+	position: relative;
+}
 
-/* .btns a:hover, .btns button:hover, .submitBtn:hover { */
-/* 	background-color: black; */
-/* 	color: white; */
-/* } */
+.header-menu > li:hover > ul {
+	display: block;
+}
+
+.header-menu ul {
+	background-color: #efefef;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	height: 135px;
+	z-index: 1;
+}
+

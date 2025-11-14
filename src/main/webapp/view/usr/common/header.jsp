@@ -21,9 +21,16 @@
 	<div class="container h-20 flex mx-auto text-3xl">
 		<div><a class="flex h-full px-3 items-center" href="/">로고</a></div>
 		<div class="grow"></div>
-		<ul class="flex">
+		<ul class="flex header-menu">
 			<li class="hover:underline underline-offset-8"><a class="flex h-full px-3 items-center" href="/">HOME</a></li>
-			<li class="hover:underline underline-offset-8"><a class="flex h-full px-3 items-center" href="/usr/article/list">LIST</a></li>
+			<li>
+				<a class="flex h-full px-3 items-center hover:underline underline-offset-8" href="#">LIST</a>
+				<ul class="hidden">
+					<li class="hover:underline underline-offset-8"><a class="flex h-full px-3 py-1 items-center" href="/usr/article/list?boardId=1">NOTICE</a></li>
+					<li class="hover:underline underline-offset-8"><a class="flex h-full px-3 py-1 items-center" href="/usr/article/list?boardId=2">FREE</a></li>
+					<li class="hover:underline underline-offset-8"><a class="flex h-full px-3 py-1 items-center" href="/usr/article/list?boardId=3">QNA</a></li>
+				</ul>
+			</li>
 			<c:if test="${req.getLoginedMemberId() == -1 }">
 				<li class="hover:underline underline-offset-8"><a class="flex h-full px-3 items-center" href="/usr/member/join">JOIN</a></li>
 				<li class="hover:underline underline-offset-8"><a class="flex h-full px-3 items-center" href="/usr/member/login">LOGIN</a></li>

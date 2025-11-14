@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<c:set var="pageTitle" value="목록"/>
+<c:set var="pageTitle" value="${boardName } 게시판"/>
 
 <%@ include file="/view/usr/common/header.jsp" %>
 

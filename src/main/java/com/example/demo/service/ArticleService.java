@@ -20,8 +20,8 @@ public class ArticleService {
 		this.articleDao.writeArticle(title, content, loginedMemberId);
 	}
 
-	public List<Article> showList() {
-		return this.articleDao.showList();
+	public List<Article> showList(int boardId) {
+		return this.articleDao.showList(boardId);
 	}
 
 	public Article getArticleById(int id) {
@@ -39,5 +39,4 @@ public class ArticleService {
 	public int getLastInsertId() {
 		return this.articleDao.getLastInsertId();
 	}
-
 }
