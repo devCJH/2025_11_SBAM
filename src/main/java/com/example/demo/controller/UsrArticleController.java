@@ -109,11 +109,11 @@ public class UsrArticleController {
 	
 	@GetMapping("/usr/article/delete")
 	@ResponseBody
-	public String delete(int id) {
+	public String delete(int id, int boardId) {
 		
 		this.articleService.deleteArticle(id);
 		
-		return Util.jsReplace(String.format("%d번 게시물이 삭제되었습니다", id), "list");
+		return Util.jsReplace(String.format("%d번 게시물이 삭제되었습니다", id), String.format("list?boardId=%d", boardId));
 	}
 	
 }
