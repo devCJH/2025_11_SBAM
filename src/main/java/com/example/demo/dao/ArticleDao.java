@@ -24,6 +24,13 @@ public interface ArticleDao {
 	public void writeArticle(String title, String content, int loginedMemberId, int boardId);
 
 	@Select("""
+			SELECT COUNT(id)
+				FROM article
+				WHERE boardId = #{boardId}
+			""")
+	public int getArticlesCnt(int boardId);
+	
+	@Select("""
 			SELECT a.id
 			        , a.regDate
 			        , a.title
@@ -33,8 +40,9 @@ public interface ArticleDao {
 			    ON a.memberId = m.id
 			    WHERE a.boardId = #{boardId}
 			    ORDER BY a.id DESC
+			    LIMIT #{limitFrom}, #{itemsInAPage}
 			""")
-	public List<Article> showList(int boardId);
+	public List<Article> showList(int boardId, int limitFrom, int itemsInAPage);
 
 	@Select("""
 			SELECT a.*

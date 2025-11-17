@@ -133,8 +133,14 @@ INSERT INTO board
 INSERT INTO board
     SET boardName = '자유';
 INSERT INTO board
-    SET boardName = '질문과답변';
+    SET boardName = '질문과 답변';
 
 SELECT * FROM article;
 SELECT * FROM `member`;
 SELECT * FROM board;
+
+/*
+페이징 테스트용 더미데이터
+insert into article (regDate, updateDate, memberId, title, content, boardId)
+select now(), now(), floor(rand() * 3) + 2, concat('제목_', substr(RAND(), 1, 5)), CONCAT('내용_', SUBSTR(RAND(), 1, 5)), FLOOR(RAND() * 2) + 2 from article;
+*/
