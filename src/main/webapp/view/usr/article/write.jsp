@@ -12,6 +12,18 @@
 				<div class="table-box">
 					<table class="table">
 						<tr>
+							<th>게시판</th>
+							<td>
+								<c:if test="${req.getLoginedMember().getAuthLevel() == 0 }">
+									<label><input class="radio radio-neutral radio-xs" name="boardId" type="radio" value="1" /> 공지</label>
+								</c:if>
+								&nbsp;&nbsp;&nbsp;
+								<label><input class="radio radio-neutral radio-xs" name="boardId" type="radio" value="2" ${boardId == 2 ? "checked" : ""} /> 자유</label>
+								&nbsp;&nbsp;&nbsp;
+								<label><input class="radio radio-neutral radio-xs" name="boardId" type="radio" value="3" ${boardId == 3 ? "checked" : ""} /> 질문과 답변</label>
+							</td>
+						</tr>
+						<tr>
 							<th>제목</th>
 							<td><input class="input input-neutral" name="title" type="text"/></td>
 						</tr>

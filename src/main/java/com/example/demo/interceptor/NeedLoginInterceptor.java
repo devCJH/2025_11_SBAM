@@ -21,7 +21,7 @@ public class NeedLoginInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 
-		if (this.req.getLoginedMemberId() == -1) {
+		if (this.req.getLoginedMember().getId() == 0) {
 			this.req.jsPrintReplace("로그인 후 이용해주세요", "/usr/member/login");
 			return false;
 		}

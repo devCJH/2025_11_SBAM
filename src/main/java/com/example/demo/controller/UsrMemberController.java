@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.demo.dto.LoginedMember;
 import com.example.demo.dto.Member;
 import com.example.demo.dto.Req;
 import com.example.demo.dto.ResultData;
@@ -55,7 +56,7 @@ public class UsrMemberController {
 	
 	@PostMapping("/usr/member/validLoginInfo")
 	@ResponseBody
-	public ResultData<Integer> validLoginInfo(String loginId, String loginPw) {
+	public ResultData<Member> validLoginInfo(String loginId, String loginPw) {
 		
 		Member member = this.memberService.getMemberByLoginId(loginId);
 		
@@ -67,14 +68,14 @@ public class UsrMemberController {
 			return new ResultData<>("F-2", "비밀번호가 일치하지 않습니다");
 		}
 		
-		return new ResultData<>("S-1", "로그인 가능", member.getId());
+		return new ResultData<>("S-1", "로그인 가능", member);
 	}
 	
 	@PostMapping("/usr/member/doLogin")
 	@ResponseBody
-	public String doLogin(int loginedMemberId, String loginId) {
+	public String doLogin(int loginedMemberId, int loginedMemberAuthLevel, String loginId) {
 		
-		this.req.login(loginedMemberId);
+		this.req.login(new LoginedMember(loginedMemberId, loginedMemberAuthLevel));
 		
 		return Util.jsReplace(String.format("[ %s ] 님 환영합니다~!", loginId), "/");
 	}

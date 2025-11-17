@@ -19,6 +19,7 @@ CREATE TABLE `member`(
     , loginId VARCHAR(50) NOT NULL
     , loginPw VARCHAR(100) NOT NULL
     , `name` VARCHAR(20) NOT NULL
+    , authLevel INT UNSIGNED NOT NULL DEFAULT 1 COMMENT '관리자 = 0, 사용자 = 1'
 );
 
 CREATE TABLE board(
@@ -61,17 +62,17 @@ INSERT INTO article
 INSERT INTO article
     SET regDate = NOW()
         , updateDate = NOW()
-        , memberId = 3
-        , title = '제목5'
-        , content = '내용5'
+        , memberId = 1
+        , title = '공지1'
+        , content = '공지 내용1'
         , boardId = 1;
         
 INSERT INTO article
     SET regDate = NOW()
         , updateDate = NOW()
-        , memberId = 3
-        , title = '제목6'
-        , content = '내용6'
+        , memberId = 1
+        , title = '공지2'
+        , content = '공지 내용2'
         , boardId = 1;
         
 INSERT INTO article
@@ -85,18 +86,26 @@ INSERT INTO article
 INSERT INTO article
     SET regDate = NOW()
         , updateDate = NOW()
-        , memberId = 2
-        , title = '제목8'
-        , content = '내용8'
+        , memberId = 1
+        , title = '공지3'
+        , content = '공지 내용3'
         , boardId = 1;
         
 INSERT INTO article
     SET regDate = NOW()
         , updateDate = NOW()
-        , memberId = 3
+        , memberId = 4
         , title = '제목9'
         , content = '내용9'
         , boardId = 2;
+
+INSERT INTO `member`
+    SET regDate = NOW()
+        , updateDate = NOW()
+        , loginId = 'admin'
+        , loginPw = 'admin'
+        , `name` = 'admin'
+        , authLevel = 0;
 
 INSERT INTO `member`
     SET regDate = NOW()

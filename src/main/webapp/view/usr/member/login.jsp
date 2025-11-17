@@ -40,7 +40,14 @@
 					} else {
 						validLoginInfoMsg.removeClass('text-red-500');
 						validLoginInfoMsg.empty();
-						$(form).append(`<input type='hidden' name='loginedMemberId' value='\${data.rsData}' />`);
+						
+						let addInputHidden = `
+							<input type='hidden' name='loginedMemberId' value='\${data.rsData.id}' />
+							<input type='hidden' name='loginedMemberAuthLevel' value='\${data.rsData.authLevel}' />
+						`
+
+						$(form).append(addInputHidden);
+						
 						form.submit();
 					}
 				},
@@ -69,24 +76,6 @@
 					  <button class="btn btn-neutral mt-2">로그인</button>
 					</fieldset>
 				</div>
-<!-- 				<div class="table-box"> -->
-<!-- 					<table class="table"> -->
-<!-- 						<tr> -->
-<!-- 							<th>아이디</th> -->
-<!-- 							<td><input class="border w-full" name="loginId" type="text"/></td> -->
-<!-- 						</tr> -->
-<!-- 						<tr> -->
-<!-- 							<th>비밀번호</th> -->
-<!-- 							<td><input class="border w-full" name="loginPw" type="text"/></td> -->
-<!-- 						</tr> -->
-<!-- 						<tr> -->
-<!-- 							<td colspan="2"> -->
-<!-- 								<div id="validLoginInfoMsg" class="mb-2 text-sm h-5 text-center mx-auto w-72"></div> -->
-<!-- 								<button class="btn btn-neutral btn-outline btn-sm btn-wide">로그인</button> -->
-<!-- 							</td> -->
-<!-- 						</tr> -->
-<!-- 					</table> -->
-<!-- 				</div> -->
 			</form>
 			<div class="bg-white mt-4 w-xs mx-auto">
 				<div><button class="btn btn-neutral btn-outline btn-xs" onclick="history.back();">뒤로가기</button></div>

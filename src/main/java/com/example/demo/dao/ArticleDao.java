@@ -19,8 +19,9 @@ public interface ArticleDao {
 					, memberId = #{loginedMemberId}
 					, title = #{title}
 					, content = #{content}
+					, boardId = #{boardId}
 			""")
-	public void writeArticle(String title, String content, int loginedMemberId);
+	public void writeArticle(String title, String content, int loginedMemberId, int boardId);
 
 	@Select("""
 			SELECT a.id

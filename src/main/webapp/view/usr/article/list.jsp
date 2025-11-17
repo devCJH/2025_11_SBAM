@@ -27,8 +27,17 @@
 				</table>
 			</div>
 			<div class="bg-white p-6 flex justify-end">
-				<c:if test="${req.getLoginedMemberId() != -1 }">
-					<div><a class="btn btn-neutral btn-outline btn-xs" href="/usr/article/write">글쓰기</a></div>
+				<c:if test="${req.getLoginedMember().getId() != 0 }">
+					<c:choose>
+						<c:when test="${req.getLoginedMember().getAuthLevel() == 0 }">
+							<div><a class="btn btn-neutral btn-outline btn-xs" href="/usr/article/write?boardId=${param.boardId }">글쓰기</a></div>
+						</c:when>
+						<c:otherwise>
+							<c:if test="${param.boardId != 1 }">
+								<div><a class="btn btn-neutral btn-outline btn-xs" href="/usr/article/write?boardId=${param.boardId }">글쓰기</a></div>
+							</c:if>
+						</c:otherwise>
+					</c:choose>
 				</c:if>
 			</div>
 		</div>

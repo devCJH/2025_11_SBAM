@@ -27,15 +27,18 @@ public class UsrArticleController {
 	}
 	
 	@GetMapping("/usr/article/write")
-	public String write() {
+	public String write(Model model, int boardId) {
+		
+		model.addAttribute("boardId", boardId);
+		
 		return "usr/article/write";
 	}
 	
 	@PostMapping("/usr/article/doWrite")
 	@ResponseBody
-	public String doWrite(HttpSession session, String title, String content) {
+	public String doWrite(HttpSession session, String title, String content, int boardId) {
 		
-		this.articleService.writeArticle(title, content, (int) session.getAttribute("loginedMemberId"));
+		this.articleService.writeArticle(title, content, (int) session.getAttribute("loginedMemberId"), boardId);
 		
 		int id = this.articleService.getLastInsertId();
 		
