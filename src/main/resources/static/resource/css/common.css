@@ -30,6 +30,6 @@ html * {
 	top: 100%;
 	left: 0;
 	height: 135px;
-	z-index: 1;
+	z-index: 999;
 }
 

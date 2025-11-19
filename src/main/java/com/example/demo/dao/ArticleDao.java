@@ -24,13 +24,32 @@ public interface ArticleDao {
 	public void writeArticle(String title, String content, int loginedMemberId, int boardId);
 
 	@Select("""
+			<script>
 			SELECT COUNT(id)
 				FROM article
 				WHERE boardId = #{boardId}
+				<if test="searchKeyword != ''">
+					<choose>
+						<when test="searchType == 'title'">
+							AND title LIKE CONCAT('%', #{searchKeyword}, '%')
+						</when>
+						<when test="searchType == 'content'">
+							AND content LIKE CONCAT('%', #{searchKeyword}, '%')
+						</when>
+						<otherwise>
+							AND (
+								title LIKE CONCAT('%', #{searchKeyword}, '%')
+								OR content LIKE CONCAT('%', #{searchKeyword}, '%')
+							)
+						</otherwise>
+					</choose>
+				</if>
+			</script>
 			""")
-	public int getArticlesCnt(int boardId);
-	
+	public int getArticlesCnt(int boardId, String searchType, String searchKeyword);
+
 	@Select("""
+			<script>
 			SELECT a.id
 			        , a.regDate
 			        , a.title
@@ -39,10 +58,27 @@ public interface ArticleDao {
 			    INNER JOIN `member` AS m
 			    ON a.memberId = m.id
 			    WHERE a.boardId = #{boardId}
+			    <if test="searchKeyword != ''">
+					<choose>
+						<when test="searchType == 'title'">
+							AND a.title LIKE CONCAT('%', #{searchKeyword}, '%')
+						</when>
+						<when test="searchType == 'content'">
+							AND a.content LIKE CONCAT('%', #{searchKeyword}, '%')
+						</when>
+						<otherwise>
+							AND (
+								a.title LIKE CONCAT('%', #{searchKeyword}, '%')
+								OR a.content LIKE CONCAT('%', #{searchKeyword}, '%')
+							)
+						</otherwise>
+					</choose>
+				</if>
 			    ORDER BY a.id DESC
 			    LIMIT #{limitFrom}, #{itemsInAPage}
+			</script>
 			""")
-	public List<Article> showList(int boardId, int limitFrom, int itemsInAPage);
+	public List<Article> showList(int boardId, int limitFrom, int itemsInAPage, String searchType, String searchKeyword);
 
 	@Select("""
 			SELECT a.*
