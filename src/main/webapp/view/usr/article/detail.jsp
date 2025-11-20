@@ -6,6 +6,52 @@
 
 <%@ include file="/view/usr/common/header.jsp" %>
 	
+	<script>
+		$(function() {
+			getLikePoint();
+		})
+	
+		const clickLikePointBtn = async function() {
+			let likePointBtn = $('#likePointBtn > i').hasClass('fa-regular');
+			
+			await $.ajax({
+				url : '/usr/likePoint/clickLikePoint',
+				type : 'get',
+				data : {
+					relTypeCode : 'article',
+					relId : ${article.getId() },
+					likePointBtn : likePointBtn
+				}
+			})
+			
+			await getLikePoint();
+		}
+		
+		const getLikePoint = function() {
+			$.ajax({
+				url : '/usr/likePoint/getLikePoint',
+				type : 'get',
+				data : {
+					relTypeCode : 'article',
+					relId : ${article.getId() }
+				},
+				dataType : 'json',
+				success : function(data) {
+					$('#likePointCnt').html(data.rsData);
+					
+					if (data.success) {
+						$('#likePointBtn').html(`<i class="fa-solid fa-heart"></i>`);
+					} else {
+						$('#likePointBtn').html(`<i class="fa-regular fa-heart"></i>`);
+					}
+				},
+				error : function(xhr, status, error) {
+					console.log(error);
+				}
+			})
+		}
+	</script>
+	
 	<section class="mt-8">
 		<div class="container mx-auto">
 			<div class="table-box">
@@ -21,6 +67,20 @@
 					<tr>
 						<th>수정일</th>
 						<td>${article.getUpdateDate() }</td>
+					</tr>
+					<tr>
+						<th>추천수</th>
+						<td>
+							<c:if test="${req.getLoginedMember().getId() == 0 }">
+								<span id="likePointCnt"></span>
+							</c:if>
+							<c:if test="${req.getLoginedMember().getId() != 0 }">
+							    <button class="btn btn-neutral btn-outline btn-xs" onclick="clickLikePointBtn();">
+							    	<span id="likePointBtn"></span>
+	  							    <span id="likePointCnt"></span>
+							    </button>
+							</c:if>
+						</td>
 					</tr>
 					<tr>
 						<th>작성자</th>

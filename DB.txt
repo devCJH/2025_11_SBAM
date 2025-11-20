@@ -27,6 +27,12 @@ CREATE TABLE board(
     , boardName VARCHAR(20) NOT NULL
 );
 
+CREATE TABLE likePoint(
+    memberId INT NOT NULL
+    , relTypeCode VARCHAR(20) NOT NULL
+    , relId INT UNSIGNED NOT NULL
+);
+
 INSERT INTO article
     SET regDate = NOW()
         , updateDate = NOW()
@@ -135,9 +141,30 @@ INSERT INTO board
 INSERT INTO board
     SET boardName = '질문과 답변';
 
+INSERT INTO likePoint
+    SET memberId = 2
+        , relTypeCode = 'article'
+        , relId = 1;
+        
+INSERT INTO likePoint
+    SET memberId = 4
+        , relTypeCode = 'article'
+        , relId = 1;
+
+INSERT INTO likePoint
+    SET memberId = 2
+        , relTypeCode = 'article'
+        , relId = 4;
+        
+INSERT INTO likePoint
+    SET memberId = 2
+        , relTypeCode = 'article'
+        , relId = 3;
+        
 SELECT * FROM article;
 SELECT * FROM `member`;
 SELECT * FROM board;
+SELECT * FROM likePoint;
 
 /*
 페이징 테스트용 더미데이터
