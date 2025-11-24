@@ -9,6 +9,7 @@
 	<script>
 		$(function() {
 			getLikePoint();
+			getReplies();
 		})
 	
 		const clickLikePointBtn = async function() {
@@ -105,6 +106,74 @@
 					</div>
 				</c:if>
 			</div>
+		</div>
+	</section>
+	
+	<section class="my-4">
+		<div class="container mx-auto">
+			<div id="replyArea">
+				<div class="text-lg">댓글</div>
+			</div>
+			
+			<script>
+				const getReplies = function (){
+					$.ajax({
+						url : '/usr/reply/list',
+						type : 'get',
+						data : {
+							relTypeCode : 'article',
+							relId : ${article.getId() }
+						},
+						dataType : 'json',
+						success : function(data) {
+							for (idx in data) {
+								let addHtml = `
+									<div class="py-2 border-b-2 border-gray-200 pl-20">
+										<div class="font-semibold">\${data[idx].writerName }</div>
+										<div class="text-lg my-1 ml-2">\${data[idx].content }</div>
+										<div class="text-xs text-gray-400">\${data[idx].updateDate }</div>
+									</div>
+								`;
+								
+								$('#replyArea').append(addHtml);
+							}
+						},
+						error : function(xhr, status, error) {
+							console.log(error);
+						}
+					})
+				}
+				
+				const writeReply = function () {
+					let replyContent = $('#replyContent');
+					
+					if (replyContent.val().trim().length == 0) {
+						alert('내용이 없는 댓글은 작성할 수 없습니다');
+						replyContent.focus();
+						return;
+					}
+					
+					$.ajax({
+						url : '/usr/reply/write',
+						type : 'post',
+						data : {
+							relTypeCode : 'article',
+							relId : ${article.getId() },
+							content : $('#replyContent').val()
+						},
+					})
+				}
+			</script>
+			
+			<c:if test="${req.getLoginedMember().getId() != 0 }">
+				<div class="border-2 border-gray-200 rounded-xl px-4 mt-2">
+					<div class="mt-3 mb-2 font-semibold text-sm">닉네임</div>
+					<textarea style="resize: none;" class="textarea w-full" id="replyContent"></textarea>
+					<div class="flex justify-end my-2">
+						<button class="btn btn-neutral btn-outline btn-xs" onclick="writeReply();">등록</button>
+					</div>
+				</div>
+			</c:if>
 		</div>
 	</section>
 	

@@ -84,7 +84,7 @@ public class UsrArticleController {
 	public String detail(Model model, int id) {
 
 		Article article = this.articleService.getArticleById(id);
-
+		
 		model.addAttribute("article", article);
 
 		return "usr/article/detail";
