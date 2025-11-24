@@ -21,5 +21,9 @@ public class MemberService {
 	public void joinMember(String loginId, String loginPw, String name) {
 		this.memberDao.joinMember(loginId, loginPw, name);
 	}
+
+	public String getLoginId(int id) {
+		return this.memberDao.getLoginId(id);
+	}
 	
 }

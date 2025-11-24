@@ -88,4 +88,10 @@ public class UsrMemberController {
 		
 		return Util.jsReplace("정상적으로 로그아웃 되었습니다", "/");
 	}
+	
+	@GetMapping("/usr/member/getLoginId")
+	@ResponseBody
+	public String getLoginId() {
+		return this.memberService.getLoginId(this.req.getLoginedMember().getId());
+	}
 }

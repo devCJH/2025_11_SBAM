@@ -30,8 +30,28 @@ public class UsrReplyController {
 	
 	@PostMapping("/usr/reply/write")
 	@ResponseBody
-	public void write(String relTypeCode, int relId, String content) {
+	public int write(String relTypeCode, int relId, String content) {
+		
 		this.replyService.writeReply(this.req.getLoginedMember().getId(), relTypeCode, relId, content);
+		
+		return this.replyService.getLastInsertId();
 	}
 	
+	@GetMapping("/usr/reply/getReply")
+	@ResponseBody
+	public Reply getReply(int id) {
+		return this.replyService.getReply(id);
+	}
+	
+	@PostMapping("/usr/reply/modify")
+	@ResponseBody
+	public void modify(int id, String content) {
+		this.replyService.modifyReply(id, content);
+	}
+	
+	@PostMapping("/usr/reply/delete")
+	@ResponseBody
+	public void delete(int id) {
+		this.replyService.deleteReply(id);
+	}
 }

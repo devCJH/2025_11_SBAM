@@ -10,6 +10,36 @@
 		$(function() {
 			getLikePoint();
 			getReplies();
+			getLoginId();
+			
+			$('#replyArea').on('click', '.deleteBtn', function(){
+				const id = $(this).data('id');
+				
+				if (confirm('정말로 삭제하시겠습니까?') == false) {
+					return;
+				}
+				
+				deleteReply(id);
+			})
+			
+			$('#replyArea').on('click', '.modifyBtn', function(){
+				const id = $(this).data('id');
+				const content = $(this).data('content');
+				
+				replyModifyForm(id, content);
+			})
+			
+			$('#replyArea').on('click', '#replyModifyFormCancleBtn', function(){
+				const id = $(this).data('id');
+				
+				replyModifyFormCancle(id);
+			})
+			
+			$('#replyArea').on('click', '#modifyReplyBtn', function(){
+				const id = $(this).data('id');
+				
+				modifyReply(id);
+			})
 		})
 	
 		const clickLikePointBtn = async function() {
@@ -116,7 +146,20 @@
 			</div>
 			
 			<script>
-				const getReplies = function (){
+				const getLoginId = function () {
+					$.ajax({
+						url : '/usr/member/getLoginId',
+						type : 'get',
+						success : function (data) {
+							$('.loginedMemberLoginId').html(data);
+						},
+						error : function (xhr, status, error) {
+							console.log(error);
+						}
+					})
+				}
+			
+				const getReplies = function () {
 					$.ajax({
 						url : '/usr/reply/list',
 						type : 'get',
@@ -127,9 +170,28 @@
 						dataType : 'json',
 						success : function(data) {
 							for (idx in data) {
+								let btnHtml = '';
+								
+								if (data[idx].memberId == ${req.getLoginedMember().getId() }) {
+									btnHtml = `
+										<div class="dropdown dropdown-left mr-4">
+								          <button tabindex="0" class="btn btn-circle btn-ghost btn-xs">
+								            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block h-5 w-5 stroke-current"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path> </svg>
+								          </button>
+										  <ul tabindex="-1" class="dropdown-content menu bg-base-100 rounded-box z-1 w-19 p-2 shadow-sm">
+										    <li><button data-id="\${data[idx].id}" data-content="\${data[idx].content}" class="modifyBtn">수정</button></li>
+										    <li><button data-id="\${data[idx].id}" class="deleteBtn">삭제</button></li>
+										  </ul>
+										</div>
+							    	`;
+								}
+								
 								let addHtml = `
-									<div class="py-2 border-b-2 border-gray-200 pl-20">
-										<div class="font-semibold">\${data[idx].writerName }</div>
+									<div id="\${data[idx].id}" class="py-2 border-b-2 border-gray-200 pl-20">
+										<div class="flex justify-between">
+											<div class="font-semibold">\${data[idx].writerName }</div>
+											\${btnHtml}
+										</div>
 										<div class="text-lg my-1 ml-2">\${data[idx].content }</div>
 										<div class="text-xs text-gray-400">\${data[idx].updateDate }</div>
 									</div>
@@ -144,7 +206,7 @@
 					})
 				}
 				
-				const writeReply = function () {
+				const writeReply = async function () {
 					let replyContent = $('#replyContent');
 					
 					if (replyContent.val().trim().length == 0) {
@@ -153,7 +215,9 @@
 						return;
 					}
 					
-					$.ajax({
+					let replyId = '';
+					
+					await $.ajax({
 						url : '/usr/reply/write',
 						type : 'post',
 						data : {
@@ -161,13 +225,137 @@
 							relId : ${article.getId() },
 							content : $('#replyContent').val()
 						},
+						success : function (data) {
+							replyId = data;
+						},
+						error : function (xhr, status, error) {
+							console.log(error);
+						}
 					})
+					
+					await addReply(replyId, 'write');
+					
+					replyContent.val('');
+				}
+				
+				const addReply = function (id, method) {
+					$.ajax({
+						url : '/usr/reply/getReply',
+						type : 'get',
+						data : {
+							id : id
+						},
+						dataType : 'json',
+						success : function(data) {
+							let addHtml = `
+								<div id="\${data.id}" class="py-2 border-b-2 border-gray-200 pl-20">
+									<div class="flex justify-between">
+										<div class="font-semibold">\${data.writerName }</div>
+										<div class="dropdown dropdown-left mr-4">
+								          <button tabindex="0" class="btn btn-circle btn-ghost btn-xs">
+								            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block h-5 w-5 stroke-current"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path> </svg>
+								          </button>
+										  <ul tabindex="-1" class="dropdown-content menu bg-base-100 rounded-box z-1 w-19 p-2 shadow-sm">
+										    <li><button data-id="\${data.id}" data-content="\${data.content}" class="modifyBtn">수정</button></li>
+										    <li><button data-id="\${data.id}" class="deleteBtn">삭제</button></li>
+										  </ul>
+										</div>
+									</div>
+									<div class="text-lg my-1 ml-2">\${data.content }</div>
+									<div class="text-xs text-gray-400">\${data.updateDate }</div>
+								</div>
+							`;
+							
+							if (method == 'write') {
+								$('#replyArea').append(addHtml);
+							} else if (method == 'modify') {
+								$('#' + id).replaceWith(addHtml);
+								
+								originalForm = $('#' + id).html();
+							}
+						},
+						error : function(xhr, status, error) {
+							console.log(error);
+						}
+					})
+				}
+				
+				const deleteReply = function (id) {
+					$.ajax({
+						url : '/usr/reply/delete',
+						type : 'post',
+						data : {
+							id : id
+						}
+					})
+					
+					$('#' + id).remove();
+				}
+				
+				const modifyReply = async function (id) {
+					let replyModifyContent = $('#replyModifyContent');
+					
+					if (replyModifyContent.val().trim().length == 0) {
+						alert('내용이 없는 댓글로 수정할 수 없습니다');
+						replyModifyContent.focus();
+						return;
+					}
+					
+					await $.ajax({
+						url : '/usr/reply/modify',
+						type : 'post',
+						data : {
+							id : id,
+							content : replyModifyContent.val()
+						},
+					})
+					
+					await addReply(id, 'modify');
+				}
+				
+				let originalForm = null;
+				let originalId = null;
+				
+				const replyModifyForm = function (id, content) {
+					
+					if (originalForm != null) {
+						replyModifyFormCancle(originalId);
+					}
+					
+					let replyForm = $('#' + id);
+					
+					originalForm = replyForm.html();
+					originalId = id;
+					
+					let addHtml = `
+						<div class="border-2 border-gray-200 rounded-xl px-4 mt-2">
+							<div class="mt-3 mb-2 font-semibold text-sm loginedMemberLoginId"></div>
+							<textarea style="resize: none;" class="textarea w-full" id="replyModifyContent">\${content}</textarea>
+							<div class="flex justify-end my-2">
+								<button id="replyModifyFormCancleBtn" data-id="\${id}" class="btn btn-neutral btn-outline btn-xs mr-2">취소</button>
+								<button id="modifyReplyBtn" data-id="\${id}" class="btn btn-neutral btn-outline btn-xs">수정</button>
+							</div>
+						</div>
+					`;
+					
+					replyForm.html(addHtml);
+					
+					getLoginId();
+				}
+				
+				const replyModifyFormCancle = function (id) {
+					let replyForm = $('#' + id);
+					
+					replyForm.html(originalForm);
+					
+					originalForm = null;
+					originalId = null;
 				}
 			</script>
 			
 			<c:if test="${req.getLoginedMember().getId() != 0 }">
 				<div class="border-2 border-gray-200 rounded-xl px-4 mt-2">
-					<div class="mt-3 mb-2 font-semibold text-sm">닉네임</div>
+					<div class="mt-3 mb-2 font-semibold text-sm loginedMemberLoginId"></div>
 					<textarea style="resize: none;" class="textarea w-full" id="replyContent"></textarea>
 					<div class="flex justify-end my-2">
 						<button class="btn btn-neutral btn-outline btn-xs" onclick="writeReply();">등록</button>

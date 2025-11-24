@@ -23,4 +23,20 @@ public class ReplyService {
 	public void writeReply(int memberId, String relTypeCode, int relId, String content) {
 		this.replyDao.writeReply(memberId, relTypeCode, relId, content);
 	}
+
+	public int getLastInsertId() {
+		return this.replyDao.getLastInsertId();
+	}
+
+	public Reply getReply(int id) {
+		return this.replyDao.getReply(id);
+	}
+
+	public void modifyReply(int id, String content) {
+		this.replyDao.modifyReply(id, content);
+	}
+	
+	public void deleteReply(int id) {
+		this.replyDao.deleteReply(id);
+	}
 }

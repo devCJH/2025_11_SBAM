@@ -24,5 +24,12 @@ public interface MemberDao {
 			        , `name` = #{name}
 			""")
 	void joinMember(String loginId, String loginPw, String name);
+
+	@Select("""
+			SELECT loginId
+				FROM `member`
+				WHERE id = #{id}
+			""")
+	String getLoginId(int id);
 	
 }
