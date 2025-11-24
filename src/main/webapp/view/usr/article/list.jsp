@@ -47,6 +47,8 @@
 						<th>제목</th>
 						<th>작성자</th>
 						<th>작성일</th>
+						<th>추천수</th>
+						<th>조회수</th>
 					</tr>
 					<c:forEach items="${articles }" var="article">
 						<tr class="hover:bg-base-300">
@@ -54,6 +56,8 @@
 							<td class="hover:underline underline-offset-4"><a href="/usr/article/detail?id=${article.getId() }">${article.getTitle() }</a></td>
 							<td>${article.getWriterName() }</td>
 							<td>${article.getRegDate() }</td>
+							<td>${article.getLikePoint() }</td>
+							<td>${article.getViews() }</td>
 						</tr>
 					</c:forEach>
 				</table>

@@ -54,9 +54,14 @@ public interface ArticleDao {
 			        , a.regDate
 			        , a.title
 			        , m.loginId AS `writerName`
+			        , COUNT(l.memberId) AS `likePoint`
+			        , a.views
 			    FROM article AS a
 			    INNER JOIN `member` AS m
 			    ON a.memberId = m.id
+			    LEFT JOIN likePoint l
+			    ON l.relTypeCode = 'article'
+			    AND l.relId = a.id
 			    WHERE a.boardId = #{boardId}
 			    <if test="searchKeyword != ''">
 					<choose>
@@ -74,6 +79,7 @@ public interface ArticleDao {
 						</otherwise>
 					</choose>
 				</if>
+				GROUP BY a.id
 			    ORDER BY a.id DESC
 			    LIMIT #{limitFrom}, #{itemsInAPage}
 			</script>
@@ -113,4 +119,11 @@ public interface ArticleDao {
 
 	@Select("SELECT LAST_INSERT_ID()")
 	public int getLastInsertId();
+
+	@Update("""
+			UPDATE article
+				SET views = views + 1
+				WHERE id = #{id}
+			""")
+	public void increaseViews(int id);
 }

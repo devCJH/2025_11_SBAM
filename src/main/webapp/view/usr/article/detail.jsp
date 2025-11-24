@@ -114,6 +114,10 @@
 						</td>
 					</tr>
 					<tr>
+						<th>조회수</th>
+						<td>${article.getViews() }</td>
+					</tr>
+					<tr>
 						<th>작성자</th>
 						<td>${article.getWriterName() }</td>
 					</tr>
