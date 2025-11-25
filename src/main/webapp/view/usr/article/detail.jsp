@@ -131,7 +131,7 @@
 					</tr>
 				</table>
 			</div>
-			<div class="bg-white p-6 flex justify-between">
+			<div class="p-6 flex justify-between">
 				<div><button class="btn btn-neutral btn-outline btn-xs" onclick="history.back();">뒤로가기</button></div>
 				<c:if test="${req.getLoginedMember().getId() == article.getMemberId() }">
 					<div class="flex">

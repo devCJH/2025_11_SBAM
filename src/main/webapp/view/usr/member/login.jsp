@@ -77,7 +77,7 @@
 					</fieldset>
 				</div>
 			</form>
-			<div class="bg-white mt-4 w-xs mx-auto">
+			<div class="mt-4 w-xs mx-auto">
 				<div><button class="btn btn-neutral btn-outline btn-xs" onclick="history.back();">뒤로가기</button></div>
 			</div>
 		</div>

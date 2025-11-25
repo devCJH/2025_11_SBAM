@@ -33,6 +33,39 @@ html * {
 	z-index: 999;
 }
 
+[data-theme="dark"] .header-menu > li:hover > ul {
+	background-color: white;
+	color: black;
+}
+
+[data-theme="dark"] .btn.btn-neutral {
+	border: 1px solid white;
+	color: white;
+}
+
+[data-theme="dark"] .btn.btn-neutral:hover {
+	background-color: white;
+	color: black;
+}
+
+[data-theme="dark"] .join .join-item.btn-active {
+	background-color: #efefef;
+	color: black;
+}
+
+[data-theme="dark"] .radio {
+	border: 1px solid white;
+	color: white;
+}
+
+[data-theme="dark"] .input {
+	border: 1px solid gray;
+}
+
+[data-theme="dark"] .input:focus {
+	border: 1px solid white;
+}
+
 .ProseMirror div, .toastui-editor-contents p {
 	font-size: 1.5rem;
 	text-align: left;
