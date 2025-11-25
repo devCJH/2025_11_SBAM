@@ -64,6 +64,8 @@ html * {
 
 [data-theme="dark"] .input:focus {
 	border: 1px solid white;
+	outline: 2px solid white;
+	outline-offset: 2px;
 }
 
 .ProseMirror div, .toastui-editor-contents p {
