@@ -10,7 +10,6 @@
 		<div class="container mx-auto">
 			<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat eaque soluta asperiores magni ab inventore non atque quas consequatur libero facere nihil eius earum consectetur dolorem quod recusandae impedit rem.</div>
 			<div>안녕~~~</div>
-			
 		</div>
 	</section>
 

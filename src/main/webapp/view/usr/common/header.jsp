@@ -101,10 +101,7 @@
 			</c:if>
 			<li class="hover:underline underline-offset-8"><a class="flex h-full px-3 items-center" href="/usr/home/apiTest1">API1</a></li>
 			<li class="hover:underline underline-offset-8"><a class="flex h-full px-3 items-center" href="/usr/home/apiTest2">API2</a></li>
+			<li class="hover:underline underline-offset-8"><a class="flex h-full px-3 items-center" href="/usr/api/apiTest3">API3</a></li>
 		</ul>
 	</div>
-	
-	
-	
-	
 	
