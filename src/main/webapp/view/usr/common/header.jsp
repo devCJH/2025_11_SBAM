@@ -13,7 +13,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="/resource/css/common.css" />
-<script src="/resource/js/common.js"></script>
 <meta charset="UTF-8">
 <title>${pageTitle }</title>
 </head>

@@ -127,7 +127,7 @@
 					</tr>
 					<tr>
 						<th>내용</th>
-						<td>${article.getContent() }</td>
+						<td>${article.getForPrintContent() }</td>
 					</tr>
 				</table>
 			</div>

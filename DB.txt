@@ -120,7 +120,7 @@ INSERT INTO `member`
     SET regDate = NOW()
         , updateDate = NOW()
         , loginId = 'admin'
-        , loginPw = 'admin'
+        , loginPw = SHA2('admin', 256)
         , `name` = 'admin'
         , authLevel = 0;
 
@@ -128,21 +128,21 @@ INSERT INTO `member`
     SET regDate = NOW()
         , updateDate = NOW()
         , loginId = 'test1'
-        , loginPw = 'test1'
+        , loginPw = SHA2('test1', 256)
         , `name` = 'test1';
         
 INSERT INTO `member`
     SET regDate = NOW()
         , updateDate = NOW()
         , loginId = 'test2'
-        , loginPw = 'test2'
+        , loginPw = SHA2('test2', 256)
         , `name` = 'test2';
         
 INSERT INTO `member`
     SET regDate = NOW()
         , updateDate = NOW()
         , loginId = 'test3'
-        , loginPw = 'test3'
+        , loginPw = SHA2('test3', 256)
         , `name` = 'test3';
 
 INSERT INTO board

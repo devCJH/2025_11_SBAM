@@ -62,7 +62,7 @@
 					</c:forEach>
 				</table>
 			</div>
-			<div class="bg-white px-6 pt-6 flex justify-end">
+			<div class="px-6 pt-6 flex justify-end">
 				<c:if test="${req.getLoginedMember().getId() != 0 }">
 					<c:choose>
 						<c:when test="${req.getLoginedMember().getAuthLevel() == 0 }">

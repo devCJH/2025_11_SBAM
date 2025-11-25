@@ -121,7 +121,7 @@
 					</table>
 				</div>
 			</form>
-			<div class="bg-white p-6">
+			<div class="p-6">
 				<div><button class="btn btn-neutral btn-outline btn-xs" onclick="history.back();">뒤로가기</button></div>
 			</div>
 		</div>
