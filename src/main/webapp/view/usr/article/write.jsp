@@ -33,7 +33,7 @@
 							<th>내용</th>
 							<td>
 								<div id="toast-ui-editor">
-									<div>${article.getContent() }</div>
+									<div></div>
 								</div>
 							</td>
 						</tr>

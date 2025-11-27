@@ -30,7 +30,7 @@ public class UsrMemberController {
 	
 	@PostMapping("/usr/member/doJoin")
 	@ResponseBody
-	public String doJoin(String loginId, String loginPw, String loginPwChk, String name) {
+	public String doJoin(String loginId, String loginPw, String name) {
 
 		this.memberService.joinMember(loginId, Util.encryptSHA256(loginPw), name);
 		
