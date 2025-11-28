@@ -10,10 +10,18 @@ spring:
     url: jdbc:mysql://localhost:3307/SB_AM
     username: root
     password: 
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+
 server:
   port: 8081
 #  servlet:
 #    context-path: /test
+
 custom:
   api:
     key: sd2/w1FPMP7dCiLT1r8GNJatfwBCKhZfFVQAA3lNV55hr4o2tNP9B0NpNBn7iAGvAN8QwKTBfli73H/dq7xZBw==
+  file:
+    dir: D:\cjh\B\upload

@@ -44,6 +44,14 @@ CREATE TABLE reply(
     , content VARCHAR(500) NOT NULL
 );
 
+CREATE TABLE `file`(
+    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT
+    , regDate DATETIME NOT NULL
+    , originName VARCHAR(50) NOT NULL
+    , savedName VARCHAR(100) NOT NULL
+    , savedPath VARCHAR(100) NOT NULL
+);
+
 INSERT INTO article
     SET regDate = NOW()
         , updateDate = NOW()
@@ -201,6 +209,7 @@ SELECT * FROM `member`;
 SELECT * FROM board;
 SELECT * FROM likePoint;
 SELECT * FROM reply;
+SELECT * FROM `file`;
 
 /*
 페이징 테스트용 더미데이터

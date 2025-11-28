@@ -83,6 +83,25 @@
 		    	<br />
 		    	<button class="btn btn-neutral btn-outline btn-xs" onclick="ajaxChkBtn();">ajaxChk</button>
 			</div>
+			
+			<br />
+			<hr />
+			<br />
+			
+			<div>
+				<form action="upload" method="post" enctype="multipart/form-data">
+					<div class="flex">
+						<fieldset class="fieldset">
+	  					  <input type="file" class="file-input" name="file" />
+						  <label class="label">최대크기 10MB</label>
+						</fieldset>
+		  				<button class="btn btn-neutral btn-outline btn-xs m-3">업로드</button>
+	  				</div>
+				</form>
+			</div>
+			<div>
+				<a class="btn btn-neutral btn-outline btn-xs" href="/usr/home/view">파일보러가기</a>
+			</div>
 		</div>
 	</section>
 
