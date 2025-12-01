@@ -14,6 +14,7 @@
 			form.loginPw.value = form.loginPw.value.trim();
 			form.loginPwChk.value = form.loginPwChk.value.trim();
 			form.name.value = form.name.value.trim();
+			form.email.value = form.email.value.trim();
 			
 			if (form.loginId.value.length == 0) {
 				alert('아이디는 필수 입력 정보입니다');
@@ -37,6 +38,12 @@
 			if (form.name.value.length == 0) {
 				alert('이름은 필수 입력 정보입니다');
 				form.name.focus();
+				return false;
+			}
+			
+			if (form.email.value.length == 0) {
+				alert('이메일은 필수 입력 정보입니다');
+				form.email.focus();
 				return false;
 			}
 			
@@ -114,6 +121,10 @@
 						<tr>
 							<th>이름</th>
 							<td><input class="input input-neutral" name="name" type="text"/></td>
+						</tr>
+						<tr>
+							<th>이메일</th>
+							<td><input class="input input-neutral" name="email" type="text"/></td>
 						</tr>
 						<tr>
 							<td colspan="2"><button class="btn btn-neutral btn-outline btn-sm btn-wide">가입</button></td>

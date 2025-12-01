@@ -30,9 +30,9 @@ public class UsrMemberController {
 	
 	@PostMapping("/usr/member/doJoin")
 	@ResponseBody
-	public String doJoin(String loginId, String loginPw, String name) {
+	public String doJoin(String loginId, String loginPw, String name, String email) {
 
-		this.memberService.joinMember(loginId, Util.encryptSHA256(loginPw), name);
+		this.memberService.joinMember(loginId, Util.encryptSHA256(loginPw), name, email);
 		
 		return Util.jsReplace(String.format("%s님의 가입이 완료되었습니다", loginId), "login");
 	}
@@ -93,5 +93,55 @@ public class UsrMemberController {
 	@ResponseBody
 	public String getLoginId() {
 		return this.memberService.getLoginId(this.req.getLoginedMember().getId());
+	}
+	
+	@GetMapping("/usr/member/findLoginId")
+	public String findLoginId() {
+		return "usr/member/findLoginId";
+	}
+	
+	@GetMapping("/usr/member/doFindLoginId")
+	@ResponseBody
+	public ResultData doFindLoginId(String name, String email) {
+		
+		Member member = this.memberService.getMemberByNameAndEmail(name, email);
+		
+		if (member == null) {
+			return new ResultData<>("F-1", "입력하신 정보와 일치하는 회원이 없습니다");
+		}
+		
+		return new ResultData<>("S-1", String.format("회원님의 아이디는 [ %s ] 입니다", member.getLoginId()));
+	}
+	
+	@GetMapping("/usr/member/findLoginPw")
+	public String findLoginPw() {
+		return "usr/member/findLoginPw";
+	}
+	
+	@GetMapping("/usr/member/doFindLoginPw")
+	@ResponseBody
+	public ResultData doFindLoginPw(String loginId, String email) {
+		
+		Member member = this.memberService.getMemberByLoginId(loginId);
+		
+		if (member == null) {
+			return new ResultData<>("F-1", "입력하신 아이디와 일치하는 회원이 없습니다");
+		}
+		
+		if (member.getEmail().equals(email) == false) {
+			return new ResultData<>("F-2", "이메일이 일치하지 않습니다");
+		}
+		
+		String tempPassword = Util.createTempPassword();
+		
+		try {
+			this.memberService.sendPasswordRecoveryEmail(member, tempPassword);
+		} catch (Exception e) {
+			return new ResultData<>("F-3", "임시 패스워드 발송에 실패했습니다");
+		}
+		
+		this.memberService.modifyPassword(member.getId(), Util.encryptSHA256(tempPassword));
+		
+		return new ResultData<>("S-1", "회원님의 이메일주소로 임시 패스워드가 발송되었습니다");
 	}
 }

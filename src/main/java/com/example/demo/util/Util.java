@@ -2,6 +2,7 @@ package com.example.demo.util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.UUID;
 
 public class Util {
 	public static String jsReplace(String msg, String uri) {
@@ -61,4 +62,8 @@ public class Util {
             throw new RuntimeException("SHA-256 알고리즘을 지원하지 않습니다.", e);
         }
     }
+	
+	public static String createTempPassword() {
+		return UUID.randomUUID().toString().replaceAll("-", "").substring(0, 10);
+	}
 }
