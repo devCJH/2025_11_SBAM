@@ -46,7 +46,23 @@ public interface MemberDao {
 			UPDATE `member`
 				SET updateDate = NOW()
 					, loginPw = #{loginPw}
-				WHERE id = #{loginedMemberId}
+				WHERE id = #{id}
 			""")
-	void modifyPassword(int loginedMemberId, String loginPw);
+	void modifyPassword(int id, String loginPw);
+
+	@Select("""
+			SELECT *
+				FROM `member`
+				WHERE id = #{id}
+			""")
+	Member getMemberById(int id);
+
+	@Update("""
+			UPDATE `member`
+				SET updateDate = NOW()
+					, name = #{name}
+					, email = #{email}
+				WHERE id = #{id}
+			""")
+	void modifyMember(int id, String name, String email);
 }

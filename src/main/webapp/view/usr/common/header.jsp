@@ -100,6 +100,7 @@
 				<li class="hover:underline underline-offset-8"><a class="flex h-full px-3 items-center" href="/usr/member/login">LOGIN</a></li>
 			</c:if>
 			<c:if test="${req.getLoginedMember().getId() != 0 }">
+				<li class="hover:underline underline-offset-8"><a class="flex h-full px-3 items-center" href="/usr/member/myPage">MYPAGE</a></li>
 				<li class="hover:underline underline-offset-8"><a class="flex h-full px-3 items-center" href="/usr/member/logout">LOGOUT</a></li>
 			</c:if>
 			<li class="hover:underline underline-offset-8"><a class="flex h-full px-3 items-center" href="/usr/home/apiTest1">API1</a></li>

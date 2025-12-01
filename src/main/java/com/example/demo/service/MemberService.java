@@ -66,4 +66,12 @@ public class MemberService {
                     + "</html>";
         sendEmail(member.getEmail(), subject, text);
     }
+    
+    public Member getMemberById(int id) {
+		return this.memberDao.getMemberById(id);
+	}
+
+	public void modifyMember(int id, String name, String email) {
+		this.memberDao.modifyMember(id, name, email);
+	}
 }
